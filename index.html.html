@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 기분 점수</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        input[type="number"] {
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            width: 200px;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #3e8e41;
+        }
+        #result {
+            margin-top: 24px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            max-width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>오늘의 기분 점수를 입력하세요 (1-10)</h1>
+    <input type="number" id="mood" min="1" max="10" placeholder="숫자 입력">
+    <button onclick="getGift()">선물 받기!</button>
+    <div id="result"></div>
+
+    <script>
+        function getGift() {
+            const mood = parseInt(document.getElementById("mood").value);
+            const gifts = [
+                "커피 쿠폰 🎁",
+                "영화 티켓 🎬",
+                "도넛 🍩",
+                "책 한 권 📚",
+                "휴식 시간 🛋️",
+                "음악 스트리밍 이용권 🎵",
+                "게임 아이템 🎮",
+                "꽃 한 송이 🌹",
+                "간식 세트 🍪",
+                "미스터리 박스 🎁"
+            ];
+            
+            if (mood >= 1 && mood <= 10) {
+                const randomGift = gifts[Math.floor(Math.random() * gifts.length)];
+                document.getElementById("result").innerHTML = `
+                    <p>🎉 오늘의 기분 점수는 <strong>${mood}점</strong>!</p>
+                    <p>🎁 당신의 선물: ${randomGift}</p>
+                `;
+            } else {
+                document.getElementById("result").innerHTML = 
+                    "⚠️ 1부터 10 사이의 숫자를 입력해주세요!";
+            }
+        }
+    </script>
+</body>
+</html>
